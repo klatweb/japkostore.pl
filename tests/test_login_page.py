@@ -1,4 +1,5 @@
 import time
+import pytest
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -11,6 +12,8 @@ driver = webdriver.Chrome(options=options, service=Service(ChromeDriverManager()
 
 
 class TestPositiveScenarios:
+
+    @pytest.mark.login
     def test_positive_login(self):
         driver.get("https://japkostore.pl/")
 
