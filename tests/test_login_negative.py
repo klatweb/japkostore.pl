@@ -26,15 +26,17 @@ class TestNegativeScenarios:
         my_account_button.click()
 
         email_input = driver.find_element(By.XPATH, "//div[@class='form-group row']/div[1]/div[1]/div[1]/div[1]/input["
-                                            "@name='email']")
-        email_input.send_keys("stevenberry84@op.pl")
+                                                    "@name='email']")
+        email_input.send_keys("invalidemail@op.pl")
 
-        password_input = driver.find_element(By.XPATH, "//div[@class='form-group row']/div[1]/div[1]/div[1]/div[1]/input["
-                                               "@name='password']")
+        password_input = driver.find_element(By.XPATH,
+                                             "//div[@class='form-group row']/div[1]/div[1]/div[1]/div[1]/input["
+                                             "@name='password']")
         password_input.send_keys("g238rIJIudkjabj@19Njnja")
 
         login_button = driver.find_element(By.XPATH, "//button[@class='btn btn-primary form-control-submit']")
         login_button.click()
 
-        logout_button = driver.find_element(By.XPATH, "//a[@class='btn']")
-        assert logout_button.is_displayed(), "Logout button is not displayed"
+        invalid_login_message = driver.find_element(By.XPATH, "//section[@class='login-form']/div[1]/ul/li["
+                                                              "@class='alert alert-danger']")
+        assert invalid_login_message.is_displayed(), "Invalid login error message"
