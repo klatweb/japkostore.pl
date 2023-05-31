@@ -11,10 +11,11 @@ options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=options, service=Service(ChromeDriverManager().install()))
 
 
-class TestPositiveScenarios:
+class TestNegativeScenarios:
 
     @pytest.mark.login
-    def test_positive_login(self):
+    @pytest.mark.negative
+    def test_invalid_email(self):
         driver.get("https://japkostore.pl/")
 
         my_account_link = driver.find_element(By.XPATH, "//div[@class='pk-myaccount']")
