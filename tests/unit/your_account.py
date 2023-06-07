@@ -44,5 +44,3 @@ class TestYourAccountPage:
         assert information_page_title == expected_information_page_title, "Incorrect page title. Expected: {" \
                                                                           "expected_information_page_title}, " \
                                                                           "actual: {driver.title}"
-
-
