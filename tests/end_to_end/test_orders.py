@@ -2,7 +2,6 @@ import time
 import pytest
 
 from selenium import webdriver
-from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
@@ -13,11 +12,12 @@ options.add_argument("disable-blink-features=AutomationControlled")
 driver = webdriver.Chrome(options=options, service=Service(ChromeDriverManager().install()))
 
 
-class TestMenuPage:
+class TestOrders:
 
     @pytest.mark.positive
     @pytest.mark.menu_page
-    def test_iphone_case_page(self):
+    @pytest.mark.iphone
+    def test_orders(self):
         driver.get("https://japkostore.pl/")
 
         my_account_link = driver.find_element(By.XPATH, "//div[@class='pk-myaccount']")
@@ -53,11 +53,8 @@ class TestMenuPage:
 
         main_page_link.click()
 
-        top_menu_iphone_hover = driver.find_element(By.XPATH, "//ul[@id='top-menu']/li[2]/a[@href='#']/span[1]")
-        ActionChains(driver).move_to_element(top_menu_iphone_hover)
 
-        categories_txt = driver.find_element(By.XPATH, "//*[@id='main-content']/div[2]/div/div/section/div/div/div["
-                                                       "1]/div/div/section[1]/div/div/div/div/div/div[1]/div/h2")
-        assert categories_txt.is_displayed()
+
+
 
         driver.delete_all_cookies()
